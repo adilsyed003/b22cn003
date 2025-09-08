@@ -6,6 +6,7 @@ import (
 	"time"
 
 	"affordmed.com/adilsyed003/b22cn003/backend-test-submission/database"
+	"affordmed.com/adilsyed003/b22cn003/backend-test-submission/middleware"
 	"affordmed.com/adilsyed003/b22cn003/backend-test-submission/models"
 	"github.com/gin-gonic/gin"
 )
@@ -44,6 +45,9 @@ func CreateShortLink(c *gin.Context) {
 		c.JSON(http.StatusInternalServerError, gin.H{"error": "could not create short link"})
 		return
 	}
+
+	
+	middleware.Log("backend", "info", "service", "Short URL created")
 
 		c.JSON(http.StatusOK, gin.H{
 			"shortUrl": "http://localhost:5173/" + shortCode,
